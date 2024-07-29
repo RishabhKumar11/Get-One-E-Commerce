@@ -156,8 +156,8 @@ const Users=mongoose.model('Users',{
 //Creating endpoint for Registering User
 
 app.post('/signup',async(req,res)=>{
-    let check=await Users.findOne({email:req.body.email});
-    if(check){
+    let ch=await Users.findOne({email:req.body.email});
+    if(ch){
         return res.status(400).json({success:false,errors:"Existing User Found with same email address"});
     }
     let cart={};
@@ -217,8 +217,8 @@ app.post('/login',async(req,res)=>{
 //Creating endpoint for new collection data
 
 app.get('/newcollections',async(req,res)=>{
-    let products=await Product.find({});
-    let newcollection=products.slice(1).slice(-8);
+    let product=await Product.find({});
+    let newcollection=product.slice(1).slice(-8);
     console.log("New Collections fetched");
     res.send(newcollection);
 })
